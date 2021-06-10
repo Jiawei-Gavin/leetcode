@@ -34,11 +34,11 @@ func getBiggestThree(grid [][]int) []int {
 }
 
 func removeDuplicate(res []int) []int {
-	hashTable := map[int]bool{}
+	hashMap := map[int]bool{}
 	var result []int
 	for _, v := range res {
-		if !hashTable[v] {
-			hashTable[v] = true
+		if !hashMap[v] {
+			hashMap[v] = true
 			result = append(result, v)
 		}
 	}

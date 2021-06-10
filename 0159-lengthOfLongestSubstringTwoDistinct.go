@@ -6,18 +6,18 @@ func lengthOfLongestSubstringTwoDistinct(s string) int {
 	if len(s) < 3 {
 		return len(s)
 	}
-	hashTable := make(map[byte]int)
+	hashMap := make(map[byte]int)
 	result := 2
 	left, right := 0, 0
 	for right < len(s) {
-		if len(hashTable) < 3 {
-			hashTable[s[right]] = right
+		if len(hashMap) < 3 {
+			hashMap[s[right]] = right
 			right++
 		}
-		if len(hashTable) == 3 {
-			idx := getMapMin(hashTable)
+		if len(hashMap) == 3 {
+			idx := getMapMin(hashMap)
 			left = idx + 1
-			delete(hashTable, s[idx])
+			delete(hashMap, s[idx])
 		}
 		result = max(result, right-left)
 	}
@@ -31,9 +31,9 @@ func max(a int, b int) int {
 	return b
 }
 
-func getMapMin(hashTable map[byte]int) int {
+func getMapMin(hashMap map[byte]int) int {
 	min := math.MaxInt64
-	for _, value := range hashTable {
+	for _, value := range hashMap {
 		if value < min {
 			min = value
 		}

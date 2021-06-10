@@ -2,10 +2,10 @@ package leetcode
 
 // solution1
 func majorityElement(nums []int) int {
-	hashTable := make(map[int]int)
+	hashMap := make(map[int]int)
 	for _, val := range nums {
-		hashTable[val]++
-		if hashTable[val] > len(nums)/2 {
+		hashMap[val]++
+		if hashMap[val] > len(nums)/2 {
 			return val
 		}
 	}

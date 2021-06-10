@@ -28,13 +28,13 @@ func lengthOfLongestSubstring(s string) int {
 
 // solution2
 func lengthOfLongestSubstring(s string) int {
-	hashTable := make(map[byte]int)
+	hashMap := make(map[byte]int)
 	result := 0
 	for start, end := 0, 0; end < len(s); end++ {
-		if p, ok := hashTable[s[end]]; ok {
+		if p, ok := hashMap[s[end]]; ok {
 			start = max(p, start)
 		}
-		hashTable[s[end]] = end + 1
+		hashMap[s[end]] = end + 1
 		result = max(result, end-start+1)
 
 	}

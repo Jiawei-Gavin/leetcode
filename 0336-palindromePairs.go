@@ -2,17 +2,17 @@ package leetcode
 
 func palindromePairs(words []string) [][]int {
 	var result [][]int
-	hashTable := make(map[string]int)
+	hashMap := make(map[string]int)
 	for i := 0; i < len(words); i++ {
-		hashTable[words[i]] = i
+		hashMap[words[i]] = i
 	}
 	for i := 0; i < len(words); i++ {
 		for j := 0; j < len(words[i])+1; j++ {
 			left, right := words[i][:j], words[i][j:]
-			if v, ok := hashTable[reverse(left)]; ok && v != i && isPalindrome(right) {
+			if v, ok := hashMap[reverse(left)]; ok && v != i && isPalindrome(right) {
 				result = append(result, []int{i, v})
 			}
-			if v, ok := hashTable[reverse(right)]; ok && v != i && j > 0 && isPalindrome(left) {
+			if v, ok := hashMap[reverse(right)]; ok && v != i && j > 0 && isPalindrome(left) {
 				result = append(result, []int{v, i})
 			}
 		}

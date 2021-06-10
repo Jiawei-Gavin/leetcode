@@ -1,7 +1,7 @@
 package leetcode
 
 func findMaxLength(nums []int) int {
-	hashTable := map[int]int{0: -1}
+	hashMap := map[int]int{0: -1}
 	result, count := 0, 0
 	for i, num := range nums {
 		if num == 1 {
@@ -9,10 +9,10 @@ func findMaxLength(nums []int) int {
 		} else {
 			count--
 		}
-		if index, ok := hashTable[count]; ok {
+		if index, ok := hashMap[count]; ok {
 			result = max(result, i-index)
 		} else {
-			hashTable[count] = i
+			hashMap[count] = i
 		}
 	}
 	return result

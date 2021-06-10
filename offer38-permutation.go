@@ -11,11 +11,11 @@ func dfs(n int, bytes []byte, result *[]string) {
 	if n == len(bytes)-1 {
 		*result = append(*result, string(bytes))
 	}
-	hashTable := map[byte]bool{}
+	hashMap := map[byte]bool{}
 	for i := n; i < len(bytes); i++ {
-		if !hashTable[bytes[i]] {
+		if !hashMap[bytes[i]] {
 			bytes[n], bytes[i] = bytes[i], bytes[n]
-			hashTable[bytes[n]] = true
+			hashMap[bytes[n]] = true
 			dfs(n+1, bytes, result)
 			bytes[n], bytes[i] = bytes[i], bytes[n]
 		}

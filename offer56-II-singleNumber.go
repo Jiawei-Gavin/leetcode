@@ -2,11 +2,11 @@ package leetcode
 
 // solution1
 func singleNumber(nums []int) int {
-	hashTable := make(map[int]int)
+	hashMap := make(map[int]int)
 	for _, num := range nums {
-		hashTable[num]++
+		hashMap[num]++
 	}
-	for num, val := range hashTable {
+	for num, val := range hashMap {
 		if val == 1 {
 			return num
 		}

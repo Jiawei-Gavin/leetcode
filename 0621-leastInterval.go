@@ -1,13 +1,13 @@
 package leetcode
 
 func leastInterval(tasks []byte, n int) int {
-	hashTable := make(map[byte]int)
+	hashMap := make(map[byte]int)
 	for _, task := range tasks {
-		hashTable[task]++
+		hashMap[task]++
 	}
 
 	maxExec, maxExecCnt := 0, 0
-	for _, val := range hashTable {
+	for _, val := range hashMap {
 		if val > maxExec {
 			maxExec, maxExecCnt = val, 1
 		} else if val == maxExec {

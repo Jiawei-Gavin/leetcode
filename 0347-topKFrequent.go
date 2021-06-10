@@ -7,34 +7,34 @@ import (
 
 // solution1
 func topKFrequent(nums []int, k int) []int {
-	hashTable := map[int]int{}
+	hashMap := map[int]int{}
 	m := make([]int, 0)
 	for _, num := range nums {
-		i, ok := hashTable[num]
+		i, ok := hashMap[num]
 		if ok {
-			hashTable[num] = i + 1
+			hashMap[num] = i + 1
 		} else {
-			hashTable[num] = 1
+			hashMap[num] = 1
 			m = append(m, num)
 		}
 	}
 
 	sort.Slice(m, func(i, j int) bool {
-		return hashTable[m[i]] > hashTable[m[j]]
+		return hashMap[m[i]] > hashMap[m[j]]
 	})
 	return m[:k]
 }
 
 // solution2
 func topKFrequent(nums []int, k int) []int {
-	hashTable := map[int]int{}
+	hashMap := map[int]int{}
 	for _, num := range nums {
-		hashTable[num]++
+		hashMap[num]++
 	}
 
 	h := &IHeap{}
 	heap.Init(h)
-	for key, value := range hashTable {
+	for key, value := range hashMap {
 		heap.Push(h, [2]int{key, value})
 		if h.Len() > k {
 			heap.Pop(h)

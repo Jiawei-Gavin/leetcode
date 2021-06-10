@@ -8,14 +8,14 @@ import (
 // solution1
 func sortSentence(s string) string {
 	res := ""
-	hashTable := make(map[int]string)
+	hashMap := make(map[int]string)
 	array := strings.Fields(s)
 	for i := 0; i < len(array); i++ {
 		key := int(array[i][len(array[i])-1]) - 48
-		hashTable[key] = array[i][:len(array[i])-1]
+		hashMap[key] = array[i][:len(array[i])-1]
 	}
 	for i := 1; i <= len(array); i++ {
-		res += hashTable[i]
+		res += hashMap[i]
 		if i != len(array) {
 			res += " "
 		}
