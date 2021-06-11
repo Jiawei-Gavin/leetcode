@@ -9,7 +9,10 @@ func canPermutePalindrome(s string) bool {
 	for _, v := range hashMap {
 		if v%2 != 0 {
 			odd++
+			if odd == 2 {
+				return false
+			}
 		}
 	}
-	return odd == 0 || odd == 1
+	return true
 }
