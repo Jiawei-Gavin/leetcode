@@ -7,7 +7,7 @@ func maxEnvelopes(envelopes [][]int) int {
 		return envelopes[i][0] < envelopes[j][0]
 	})
 	dp := make([]int, len(envelopes))
-	for i, _ := range dp {
+	for i := range dp {
 		dp[i] = 1
 	}
 	res := 0
@@ -15,7 +15,6 @@ func maxEnvelopes(envelopes [][]int) int {
 		for j := 0; j < i; j++ {
 			if envelopes[i][0] > envelopes[j][0] && envelopes[i][1] > envelopes[j][1] {
 				dp[i] = max(dp[i], dp[j]+1)
-
 			}
 		}
 		res = max(res, dp[i])
