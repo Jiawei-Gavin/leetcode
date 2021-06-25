@@ -9,17 +9,17 @@ type TreeNode struct {
 // solution1
 func preorderTraversal(root *TreeNode) []int {
 	var res []int
-	dfs(root, &res)
+	preorder(root, &res)
 	return res
 }
 
-func dfs(root *TreeNode, res *[]int) {
+func preorder(root *TreeNode, res *[]int) {
 	if root == nil {
 		return
 	}
 	*res = append(*res, root.Val)
-	dfs(root.Left, res)
-	dfs(root.Right, res)
+	preorder(root.Left, res)
+	preorder(root.Right, res)
 }
 
 // solution2
