@@ -1,20 +1,25 @@
 package leetcode
 
 func maxArea(height []int) int {
-	max, start, end := 0, 0, len(height)-1
+	res, start, end := 0, 0, len(height)-1
 	for start < end {
 		width := end - start
-		result := 0
+		area := 0
 		if height[end] < height[start] {
-			result = height[end] * width
+			area = height[end] * width
 			end--
 		} else {
-			result = height[start] * width
+			area = height[start] * width
 			start++
 		}
-		if result > max {
-			max = result
-		}
+		res = max(res, area)
 	}
-	return max
+	return res
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
