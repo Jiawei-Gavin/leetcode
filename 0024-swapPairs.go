@@ -6,9 +6,6 @@ type ListNode struct {
 }
 
 func swapPairs(head *ListNode) *ListNode {
-	if head == nil || head.Next == nil {
-		return head
-	}
 	dummy := &ListNode{0, head}
 	cur := dummy
 	for cur.Next != nil && cur.Next.Next != nil {
