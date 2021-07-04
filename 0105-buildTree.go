@@ -25,21 +25,28 @@ func buildTree(preorder []int, inorder []int) *TreeNode {
 
 // solution2
 func buildTree(preorder []int, inorder []int) *TreeNode {
-	inPos := make(map[int]int)
-	for i := 0; i < len(inorder); i++ {
-		inPos[inorder[i]] = i
-	}
-	return DFS(preorder, 0, len(preorder)-1, 0, inPos)
-}
-
-func DFS(pre []int, preStart int, preEnd int, inStart int, inPos map[int]int) *TreeNode {
-	if preStart > preEnd {
+	if len(preorder) == 0 {
 		return nil
 	}
-	root := &TreeNode{Val: pre[preStart]}
-	rootIdx := inPos[pre[preStart]]
-	leftLen := rootIdx - inStart
-	root.Left = DFS(pre, preStart+1, preStart+leftLen, inStart, inPos)
-	root.Right = DFS(pre, preStart+leftLen+1, preEnd, rootIdx+1, inPos)
+	root := &TreeNode{preorder[0], nil, nil}
+	var stack []*TreeNode
+	stack = append(stack, root)
+	var inorderIndex int
+	for i := 1; i < len(preorder); i++ {
+		preorderVal := preorder[i]
+		node := stack[len(stack)-1]
+		if node.Val != inorder[inorderIndex] {
+			node.Left = &TreeNode{preorderVal, nil, nil}
+			stack = append(stack, node.Left)
+		} else {
+			for len(stack) != 0 && stack[len(stack)-1].Val == inorder[inorderIndex] {
+				node = stack[len(stack)-1]
+				stack = stack[:len(stack)-1]
+				inorderIndex++
+			}
+			node.Right = &TreeNode{preorderVal, nil, nil}
+			stack = append(stack, node.Right)
+		}
+	}
 	return root
 }
