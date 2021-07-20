@@ -6,24 +6,24 @@ type ListNode struct {
 }
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	head := &ListNode{Val: 0}
-	n1, n2, carry, current := 0, 0, 0, head
+	dummy := &ListNode{Val: 0}
+	temp1, temp2, carry, cur := 0, 0, 0, dummy
 	for l1 != nil || l2 != nil || carry != 0 {
 		if l1 == nil {
-			n1 = 0
+			temp1 = 0
 		} else {
-			n1 = l1.Val
+			temp1 = l1.Val
 			l1 = l1.Next
 		}
 		if l2 == nil {
-			n2 = 0
+			temp2 = 0
 		} else {
-			n2 = l2.Val
+			temp2 = l2.Val
 			l2 = l2.Next
 		}
-		current.Next = &ListNode{Val: (n1 + n2 + carry) % 10}
-		current = current.Next
-		carry = (n1 + n2 + carry) / 10
+		cur.Next = &ListNode{Val: (temp1 + temp2 + carry) % 10}
+		cur = cur.Next
+		carry = (temp1 + temp2 + carry) / 10
 	}
-	return head.Next
+	return dummy.Next
 }
