@@ -8,18 +8,12 @@ type Node struct {
 
 func copyRandomList(head *Node) *Node {
 	hashMap := make(map[*Node]*Node)
-	cur := head
-	for cur != nil {
-		hashMap[cur] = &Node{
-			Val: cur.Val,
-		}
-		cur = cur.Next
+	for cur := head; cur != nil; cur = cur.Next {
+		hashMap[cur] = &Node{Val: cur.Val}
 	}
-	cur = head
-	for cur != nil {
+	for cur := head; cur != nil; cur = cur.Next {
 		hashMap[cur].Next = hashMap[cur.Next]
 		hashMap[cur].Random = hashMap[cur.Random]
-		cur = cur.Next
 	}
 	return hashMap[head]
 }
