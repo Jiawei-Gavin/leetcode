@@ -1,23 +1,23 @@
 package leetcode
 
 func longestPalindrome(s string) string {
-	var result string
+	var res string
 	for i := 0; i < len(s); i++ {
-		result = maxPalindrome(s, i, i, result)
-		result = maxPalindrome(s, i, i+1, result)
+		res = maxPalindrome(s, i, i, res)
+		res = maxPalindrome(s, i, i+1, res)
 	}
-	return result
+	return res
 }
 
-func maxPalindrome(s string, i, j int, result string) string {
+func maxPalindrome(s string, left, right int, res string) string {
 	var sub string
-	for i >= 0 && j < len(s) && s[i] == s[j] {
-		sub = s[i : j+1]
-		i--
-		j++
+	for left >= 0 && right < len(s) && s[left] == s[right] {
+		sub = s[left : right+1]
+		left--
+		right++
 	}
-	if len(result) < len(sub) {
+	if len(res) < len(sub) {
 		return sub
 	}
-	return result
+	return res
 }
