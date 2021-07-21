@@ -11,27 +11,27 @@ var phoneMap = map[string][]string{
 	"9": {"w", "x", "y", "z"},
 }
 
-var result []string
+var res []string
 
 func letterCombinations(digits string) []string {
-	result = []string{}
-	if digits == "" {
-		return result
+	res = []string{}
+	if len(digits) == 0 {
+		return res
 	}
-	letterFunc("", digits)
-	return result
+	backtrack("", digits, 0)
+	return res
 }
 
-func letterFunc(res string, digits string) {
-	if digits == "" {
-		result = append(result, res)
-		return
-	}
-	k := digits[0:1]
-	digits = digits[1:]
-	for i := 0; i < len(phoneMap[k]); i++ {
-		res += phoneMap[k][i]
-		letterFunc(res, digits)
-		res = res[0 : len(res)-1]
+func backtrack(combination string, digits string, index int) {
+	if index == len(digits) {
+		res = append(res, combination)
+	} else {
+		digit := digits[index]
+		letters := phoneMap[string(digit)]
+		for _, letter := range letters {
+			combination += letter
+			backtrack(combination, digits, index+1)
+			combination = combination[:index]
+		}
 	}
 }
