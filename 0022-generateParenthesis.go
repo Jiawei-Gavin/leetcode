@@ -1,20 +1,23 @@
 package leetcode
 
 func generateParenthesis(n int) []string {
-	var result []string
-	parenthesisFunc(n, n, "", &result)
-	return result
+	var res []string
+	dfs(n, n, "", &res)
+	return res
 }
 
-func parenthesisFunc(left, right int, tmp string, result *[]string) {
+func dfs(left, right int, tmp string, res *[]string) {
 	if left == 0 && right == 0 {
-		*result = append(*result, tmp)
+		*res = append(*res, tmp)
+		return
+	}
+	if left > right {
 		return
 	}
 	if left > 0 {
-		parenthesisFunc(left-1, right, tmp+"(", result)
+		dfs(left-1, right, tmp+"(", res)
 	}
-	if right > left {
-		parenthesisFunc(left, right-1, tmp+")", result)
+	if right > 0 {
+		dfs(left, right-1, tmp+")", res)
 	}
 }
