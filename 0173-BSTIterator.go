@@ -12,7 +12,7 @@ type BSTIterator struct {
 }
 
 func Constructor(root *TreeNode) BSTIterator {
-	nums := make([]int, 0)
+	var nums []int
 	inorder(root, &nums)
 	return BSTIterator{
 		nums: nums,
@@ -30,9 +30,9 @@ func inorder(root *TreeNode, nums *[]int) {
 }
 
 func (this *BSTIterator) Next() int {
-	result := this.nums[0]
+	res := this.nums[0]
 	this.nums = this.nums[1:]
-	return result
+	return res
 }
 
 func (this *BSTIterator) HasNext() bool {
