@@ -3,12 +3,11 @@ package leetcode
 func findRepeatedDnaSequences(s string) []string {
 	var res []string
 	visited := make(map[string]int)
-	for i := 0; i < len(s)-10+1; i++ {
-		str := s[i : i+10]
-		if _, ok := visited[str]; ok {
-			res = append(res, str)
+	for i, j := 0, 10; j <= len(s); i, j = i+1, j+1 {
+		if visited[s[i:j]] == 1 {
+			res = append(res, s[i:j])
 		}
-		visited[str]++
+		visited[s[i:j]]++
 	}
 	return res
 }
